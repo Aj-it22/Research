@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
-def convert_pe_to_image(pe_file):
-    # Open the PE file in binary mode
+def convert_pe_to_image(pe_file, output_path):
+    # Extract contents of PE into binary
     with open(pe_file, 'rb') as f:
         file_content = f.read()
 
@@ -26,10 +27,19 @@ def convert_pe_to_image(pe_file):
     img = plt.imshow(img_array, cmap='gray')
 
     # Display the image
-    plt.show()
-    plt.savefig('Output.png')
+    plt.savefig(os.path.join(output_path, os.path.basename(pe_file))+'.png')
     plt.close()
 
 # Example usage
-pe_file = '002ce0d28ec990aadbbc89df457189de37d8adaadc9c084b78eb7be9a9820c81.exe'
-convert_pe_to_image(pe_file)
+input_directory = "DikeDataset-main\hfiles\hbenign"
+output_path = 'BenignImages'
+
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+
+# Iterate over all PE files in the input path
+for pe_file in os.listdir(input_directory):
+    if pe_file.endswith('.exe'):
+        convert_pe_to_image(os.path.join(input_directory, pe_file), output_path)
+#pe_file = '002ce0d28ec990aadbbc89df457189de37d8adaadc9c084b78eb7be9a9820c81.exe'
+#convert_pe_to_image(pe_file)
