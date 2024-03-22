@@ -5,4 +5,4 @@ This Project is about training a AI model using transfer learning by taking a pr
 expanding the dataset(25672) and tested, now the model is 94.8% efficient with f_score of 0.86.
 
 [Update]
-expanded the dataset(226,572) and tested, now the model is 93.5% efficient with f_score of 0.86
+expanded the dataset(226,948) of 73.8gb images data and tested, now the model is 92.349% efficient with f_score of 0.86
